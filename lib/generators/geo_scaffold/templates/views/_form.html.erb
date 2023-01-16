@@ -1,0 +1,70 @@
+<%%= form_with(model: <%= model_resource_name %>) do |form| %>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div style="color: red">
+      <h2><%%= pluralize(<%= singular_table_name %>.errors.count, "error") %> prohibited this <%= singular_table_name %> from being saved:</h2>
+
+      <ul>
+        <%% <%= singular_table_name %>.errors.each do |error| %>
+          <li><%%= error.full_message %></li>
+        <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+
+<div id="map" style="height:300px;"></div>
+
+<% attributes.each do |attribute| -%>
+  <div>
+<% if attribute.password_digest? -%>
+    <%%= form.label :password, style: "display: block" %>
+    <%%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%%= form.label :password_confirmation, style: "display: block" %>
+    <%%= form.password_field :password_confirmation %>
+<% elsif attribute.attachments? -%>
+    <%%= form.label :<%= attribute.column_name %>, style: "display: block" %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true %>
+<% elsif attribute.column_name == 'lat' || attribute.column_name == 'lng' %>
+    <%%= form.hidden_field :<%= attribute.column_name %> %>
+<% else -%>
+    <%%= form.label :<%= attribute.column_name %>, style: "display: block" %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+<% end -%>
+  </div>
+
+<% end -%>
+  <div>
+    <%%= form.submit %>
+  </div>
+<%% end %>
+
+<script>
+document.addEventListener('turbo:load', () => {
+  
+  <%% if <%= singular_table_name %>.new_record? %>
+  const center = [139.7673068, 35.6809591]
+  <%% else %>
+  const center = [<%%= <%= singular_table_name %>.lng %>, <%%= <%= singular_table_name %>.lat %>]
+  <%% end %>
+  const map = new geolonia.Map({
+    container: 'map',
+    center: center,
+    zoom: 16
+  })
+  const marker = new geolonia.Marker({
+    draggable: true
+  })
+    .setLngLat(center)
+    .addTo(map)
+
+  function onDragEnd() {
+    const lngLat = marker.getLngLat()
+    document.querySelector("#<%= singular_table_name %>_lng").value = lngLat.lng
+    document.querySelector("#<%= singular_table_name %>_lat").value = lngLat.lat
+  }
+
+  marker.on('dragend', onDragEnd)
+})
+</script>
