@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "geo_scaffold"
   spec.version = GeoScaffold::VERSION
   spec.authors = ["Junya Ishihara"]
-  spec.email = ["junya@champierre.com"]
+  spec.email = ["webmaster@champierre.com"]
 
   spec.summary = "Geo Scaffold"
   spec.description = "Geo Scaffold"
