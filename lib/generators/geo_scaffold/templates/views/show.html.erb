@@ -1,5 +1,11 @@
 <p style="color: green"><%%= notice %></p>
 
+<div class="geolonia"
+  data-lat=<%%= @<%= singular_table_name %>.lat %>
+  data-lng=<%%= @<%= singular_table_name %>.lng %>
+  data-zoom=16
+  style="height:300px;"></div>
+
 <%%= render @<%= singular_table_name %> %>
 
 <div>
@@ -8,3 +14,5 @@
 
   <%%= button_to "Destroy this <%= human_name.downcase %>", <%= model_resource_name(prefix: "@") %>, method: :delete %>
 </div>
+
+<script type="text/javascript" src="https://cdn.geolonia.com/v1/embed?geolonia-api-key=YOUR-API-KEY"></script>

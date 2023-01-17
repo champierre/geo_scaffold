@@ -2,7 +2,7 @@
 
 <h1><%= human_name.pluralize %></h1>
 
-<div class="geolonia" data-geojson="#example-geojson" style="height:300px;"></div>
+<div class="geolonia" data-geojson="/<%= plural_table_name %>.json" style="height:300px;"></div>
 
 <div id="<%= plural_table_name %>">
   <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
@@ -14,29 +14,5 @@
 </div>
 
 <%%= link_to "New <%= human_name.downcase %>", <%= new_helper(type: :path) %>, data: {turbo: false} %>
-
-<script id="example-geojson" type="application/json">
-{
-  "type": "FeatureCollection",
-  "features": [
-    <%% @<%= plural_table_name %>.each_with_index do |<%= singular_table_name %>, i| %>
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "<%%= <%= singular_table_name %>.name %>",
-        "description": "<a href='/<%= plural_table_name %>/<%%= <%= singular_table_name %>.id %>'><%%= <%= singular_table_name %>.name %></a>"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          <%%= <%= singular_table_name %>.lng %>,
-          <%%= <%= singular_table_name %>.lat %>
-        ]
-      }
-    }<%%= i != @<%= plural_table_name %>.length - 1 ? ',' : '' %>
-    <%% end %>
-  ]
-}
-</script>
 
 <script type="text/javascript" src="https://cdn.geolonia.com/v1/embed?geolonia-api-key=YOUR-API-KEY"></script>

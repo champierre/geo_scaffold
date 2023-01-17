@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "geo_scaffold"
   spec.version = GeoScaffold::VERSION
   spec.authors = ["Junya Ishihara"]
-  spec.email = ["webmaster@champierre.com"]
+  spec.email = ["junya@champierre.com"]
 
   spec.summary = "Geo Scaffold"
   spec.description = "Geo Scaffold"
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/champierre/geo_scaffold"

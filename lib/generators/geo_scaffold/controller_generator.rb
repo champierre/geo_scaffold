@@ -32,6 +32,7 @@ module GeoScaffold
         end
 
         template "views/partial.html.erb", File.join(directory_path, "_#{singular_table_name}.html.erb")
+        template "views/index.json.jbuilder", File.join(directory_path, "index.json.jbuilder")
       end
 
       protected

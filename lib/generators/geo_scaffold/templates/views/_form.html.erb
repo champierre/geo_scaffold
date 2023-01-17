@@ -26,11 +26,9 @@
 <% elsif attribute.attachments? -%>
     <%%= form.label :<%= attribute.column_name %>, style: "display: block" %>
     <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, multiple: true %>
-<% elsif attribute.column_name == 'lat' || attribute.column_name == 'lng' %>
-    <%%= form.hidden_field :<%= attribute.column_name %> %>
 <% else -%>
     <%%= form.label :<%= attribute.column_name %>, style: "display: block" %>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, readonly: <%= attribute.column_name == 'lat' || attribute.column_name == 'lng' %> %>
 <% end -%>
   </div>
 
@@ -42,29 +40,30 @@
 
 <script>
 document.addEventListener('turbo:load', () => {
-  
-  <%% if <%= singular_table_name %>.new_record? %>
-  const center = [139.7673068, 35.6809591]
-  <%% else %>
-  const center = [<%%= <%= singular_table_name %>.lng %>, <%%= <%= singular_table_name %>.lat %>]
-  <%% end %>
+  const center = <%%= <%= singular_table_name %>.new_record? ? [139.7673068, 35.6809591] : [<%= singular_table_name %>.lng, <%= singular_table_name %>.lat] %>
   const map = new geolonia.Map({
     container: 'map',
     center: center,
-    zoom: 16
+    zoom: <%%= <%= singular_table_name %>.new_record? ? 14 : 16 %>
   })
-  const marker = new geolonia.Marker({
-    draggable: true
-  })
-    .setLngLat(center)
-    .addTo(map)
+  const marker = new geolonia.Marker()
 
-  function onDragEnd() {
-    const lngLat = marker.getLngLat()
+  <%% if !<%= singular_table_name %>.new_record? %>
+  marker.setLngLat(center).addTo(map)
+  <%% end %>
+
+  function onClick(e) {
+    const lngLat = e.lngLat
+
+    if (marker) {
+      marker.remove()
+    }
+
+    marker.setLngLat([lngLat.lng, lngLat.lat]).addTo(map)
     document.querySelector("#<%= singular_table_name %>_lng").value = lngLat.lng
     document.querySelector("#<%= singular_table_name %>_lat").value = lngLat.lat
   }
 
-  marker.on('dragend', onDragEnd)
+  map.on('click', onClick)
 })
 </script>
