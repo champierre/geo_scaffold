@@ -3,7 +3,7 @@ json.features @<%= plural_table_name %> do |spot|
   json.type "Feature"
   json.properties do
     json.title <%= singular_table_name %>.name
-    json.description "<a href=#{<%= singular_table_name %>_url(<%= singular_table_name %>)}>#{<%= singular_table_name %>.name}</a>"
+    json.description marker_content(<%= singular_table_name %>)
   end
   json.geometry do
     json.type "Point"

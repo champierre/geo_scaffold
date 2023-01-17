@@ -4,7 +4,7 @@
   data-lat=<%%= @<%= singular_table_name %>.lat %>
   data-lng=<%%= @<%= singular_table_name %>.lng %>
   data-zoom=16
-  style="height:300px;"></div>
+  style="height:300px;"><%%= marker_content(@<%= singular_table_name %>) %></div>
 
 <%%= render @<%= singular_table_name %> %>
 

@@ -9,7 +9,7 @@ module GeoScaffold
       source_root File.expand_path('../templates', __FILE__)
 
       class_option :orm, banner: "NAME", type: :string, required: true,
-               desc: "ORM to generate the controller for"
+        desc: "ORM to generate the controller for"
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
 
@@ -33,6 +33,10 @@ module GeoScaffold
 
         template "views/partial.html.erb", File.join(directory_path, "_#{singular_table_name}.html.erb")
         template "views/index.json.jbuilder", File.join(directory_path, "index.json.jbuilder")
+      end
+
+      def copy_helper_files
+        template "helpers/helper.rb", File.join("app/helpers", "#{controller_file_name}_helper.rb")
       end
 
       protected
