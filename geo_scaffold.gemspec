@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Junya Ishihara"]
   spec.email = ["webmaster@champierre.com"]
 
-  spec.summary = "Geo Scaffold"
-  spec.description = "Geo Scaffold"
+  spec.summary = "GeoScaffold"
+  spec.description = "GeoScaffold generates views with Geolonia Maps for a new resource that has coordinates(lat and lng)."
   spec.homepage = "https://github.com/champierre/geo_scaffold"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

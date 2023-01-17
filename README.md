@@ -1,6 +1,6 @@
 # GeoScaffold
 
-GeoScaffold generates views with [Geolonia Maps](https://geolonia.com/maps-dev/) for a new resource that has coordinates.
+GeoScaffold generates views with [Geolonia Maps](https://geolonia.com/maps-dev/) for a new resource that has coordinates(lat and lng).
 
 Geolonia Maps can be freely used without API key on [development environments](https://docs.geolonia.com/tutorial/002/#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%A7%E3%81%AE%E5%88%A9%E7%94%A8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6) such as localhost, CodePen and JSFiddle etc.
 
