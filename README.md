@@ -1,8 +1,8 @@
 # GeoScaffold
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/geo_scaffold`. To experiment with that code, run `bin/console` for an interactive prompt.
+GeoScaffold generates views with [Geolonia Maps](https://geolonia.com/maps-dev/) for a new resource that has coordinates.
 
-TODO: Delete this and the text above, and describe your gem
+![Demo](geo_scaffold_demo.gif)
 
 ## Installation
 
@@ -22,7 +22,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Generate a model for a new resource that has coordinates.
+
+```
+% bin/rails g model <resource name> name:string lng:float lat:float
+```
+
+Run the migration.
+
+```
+% bin/rails db:migrate
+```
+
+Use GeoScaffold generator to create controllers and views.
+
+```
+% bin/rails g geo_scaffold:controller <resource name>
+```
 
 ## Development
 
