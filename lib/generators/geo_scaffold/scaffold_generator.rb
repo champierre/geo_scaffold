@@ -19,9 +19,9 @@ module GeoScaffold
 
       hook_for :orm, as: :model
 
-      desc "Generates controller, controller_spec and views for the model with the given NAME."
+      desc "Generates model, controller and views for the model with the given NAME."
 
-      def copy_controller_and_spec_files
+      def copy_controller_file
         template "controller.rb", File.join("app/controllers", "#{controller_file_name}_controller.rb")
       end
 
@@ -40,19 +40,6 @@ module GeoScaffold
       def copy_helper_files
         template "helpers/helper.rb", File.join("app/helpers", "#{controller_file_name}_helper.rb")
       end
-
-      protected
-      # def model_columns_for_attributes
-      #   class_name.constantize.columns.reject do |column|
-      #     column.name.to_s =~ /^(id|created_at|updated_at)$/
-      #   end
-      # end
-    
-      # def attributes
-      #   model_columns_for_attributes.map do |column|
-      #     Rails::Generators::GeneratedAttribute.new(column.name.to_s, column.type.to_s)
-      #   end
-      # end
     end
   end
 end
