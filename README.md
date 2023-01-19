@@ -24,22 +24,23 @@ Or install it yourself as:
 
 ## Usage
 
-Generate a model for a new resource that has coordinates.
+Use GeoScaffold generator to create model, view and controller files.
+You need to add `name` and coordinates(`lat` and `lng`) as columns.
 
 ```
-% bin/rails g model <resource name> name:string lng:float lat:float
+% bin/rails g geo_scaffold:scaffold <resource name> name:string lat:float lng:float
+```
+
+You may add attachment column like `photo` and it will be handled as an image.
+
+```
+% bin/rails g geo_scaffold:scaffold <resource name> name:string photo:attachment lat:float lng:float 
 ```
 
 Run the migration.
 
 ```
 % bin/rails db:migrate
-```
-
-Use GeoScaffold generator to create controllers and views.
-
-```
-% bin/rails g geo_scaffold:controller <resource name>
 ```
 
 ## Development

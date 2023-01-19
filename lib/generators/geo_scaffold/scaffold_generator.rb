@@ -2,7 +2,7 @@ require 'generators/geo_scaffold/generator_helpers'
 
 module GeoScaffold
   module Generators
-    class ControllerGenerator < Rails::Generators::NamedBase
+    class ScaffoldGenerator < Rails::Generators::NamedBase
       include Rails::Generators::ResourceHelpers
       include GeoScaffold::Generators::GeneratorHelpers
 
@@ -16,6 +16,8 @@ module GeoScaffold
       hook_for :resource_route, in: :rails do |resource_route|
         invoke resource_route
       end
+
+      hook_for :orm, as: :model
 
       desc "Generates controller, controller_spec and views for the model with the given NAME."
 
@@ -40,17 +42,17 @@ module GeoScaffold
       end
 
       protected
-      def model_columns_for_attributes
-        class_name.constantize.columns.reject do |column|
-          column.name.to_s =~ /^(id|created_at|updated_at)$/
-        end
-      end
+      # def model_columns_for_attributes
+      #   class_name.constantize.columns.reject do |column|
+      #     column.name.to_s =~ /^(id|created_at|updated_at)$/
+      #   end
+      # end
     
-      def attributes
-        model_columns_for_attributes.map do |column|
-          Rails::Generators::GeneratedAttribute.new(column.name.to_s, column.type.to_s)
-        end
-      end
+      # def attributes
+      #   model_columns_for_attributes.map do |column|
+      #     Rails::Generators::GeneratedAttribute.new(column.name.to_s, column.type.to_s)
+      #   end
+      # end
     end
   end
 end
