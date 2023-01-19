@@ -4,7 +4,7 @@ GeoScaffold generates views with [Geolonia Maps](https://geolonia.com/maps-dev/)
 
 Geolonia Maps can be freely used without API key on [development environments](https://docs.geolonia.com/tutorial/002/#%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%81%A7%E3%81%AE%E5%88%A9%E7%94%A8%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6) such as localhost, CodePen and JSFiddle etc.
 
-![Demo](geo_scaffold_demo.gif)
+![Demo](geo_scaffold.gif)
 
 ## Installation
 
@@ -37,11 +37,13 @@ You may add attachment column like `photo` and it will be handled as an image.
 % bin/rails g geo_scaffold:scaffold <resource name> name:string photo:attachment lat:float lng:float 
 ```
 
-Run the migration.
+In this case, you need to install Active Storage.
 
 ```
-% bin/rails db:migrate
+% bin/rails rails active_storage:install
 ```
+
+![Demo](install_geo_scaffold.gif)
 
 ## Development
 
