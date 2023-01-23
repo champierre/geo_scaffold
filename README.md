@@ -40,7 +40,7 @@ You may add attachment column like `photo` and it will be handled as an image.
 In this case, you need to install Active Storage.
 
 ```
-% bin/rails rails active_storage:install
+% bin/rails active_storage:install
 ```
 
 ![Demo](install_geo_scaffold.gif)
