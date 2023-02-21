@@ -6,7 +6,7 @@ module <%= controller_class_name %>Helper
 
     # To use variant of image, you need to add 'image_processing' gem to your Gemfile."
     # html << "<strong><%= attribute.human_name %>:</strong> #{image_tag <%= singular_name %>.<%= attribute.column_name %>.variant(resize: "100x100^")}<br />" if <%= singular_name %>.<%= attribute.column_name %>.attached?
-    html << "<strong><%= attribute.human_name %>:</strong> #{image_tag <%= singular_name %>.<%= attribute.column_name %>}<br />" if <%= singular_name %>.<%= attribute.column_name %>.attached?
+    html << "<strong><%= attribute.human_name %>:</strong> #{image_tag <%= singular_name %>.<%= attribute.column_name %>, width: '100%'}<br />" if <%= singular_name %>.<%= attribute.column_name %>.attached?
 
 <% else -%>
     html << "<strong><%= attribute.human_name %>:</strong> #{<%= singular_name %>.<%= attribute.column_name %>}<br />"
